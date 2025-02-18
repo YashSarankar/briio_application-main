@@ -8,6 +8,7 @@ import '../../utils/colors.dart';
 import '../../utils/globel_veriable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';  // Make sure this import is at the top
+import 'package:pinput/pinput.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
   final String mobileNumber;
@@ -27,19 +28,9 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   final TextEditingController _otpController = TextEditingController();
   bool _isLoading = false;
 
-  // Add new controllers for individual OTP digits
-  final List<TextEditingController> _otpDigitControllers = List.generate(
-    6,
-    (index) => TextEditingController(),
-  );
-  final List<FocusNode> _focusNodes = List.generate(
-    6,
-    (index) => FocusNode(),
-  );
-
-  // Add timer variables
+  // Update timer duration to 10 minutes (600 seconds)
   Timer? _countdownTimer;
-  int _timeRemaining = 120; // 2 minutes in seconds
+  int _timeRemaining = 600; // 10 minutes in seconds
   
   @override
   void initState() {
@@ -50,30 +41,13 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   @override
   void dispose() {
     _otpController.dispose();
-    for (var controller in _otpDigitControllers) {
-      controller.dispose();
-    }
-    for (var node in _focusNodes) {
-      node.dispose();
-    }
     _countdownTimer?.cancel();
     super.dispose();
   }
 
-  void _onOtpDigitChanged(String value, int index) {
-    if (value.length == 1 && index < 5) {
-      _focusNodes[index + 1].requestFocus();
-    }
-    
-    // Combine all digits into main controller
-    _otpController.text = _otpDigitControllers
-        .map((controller) => controller.text)
-        .join();
-  }
-
   void startCountdownTimer() {
     _countdownTimer?.cancel();
-    _timeRemaining = 120; // Reset to 2 minutes instead of 10
+    _timeRemaining = 600; // Reset to 10 minutes
     
     _countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
@@ -212,13 +186,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
           );
           
           // Clear existing OTP fields
-          for (var controller in _otpDigitControllers) {
-            controller.clear();
-          }
           _otpController.clear();
-          
-          // Focus on first field
-          _focusNodes[0].requestFocus();
           
           // Restart the timer
           startCountdownTimer();
@@ -252,6 +220,32 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final defaultPinTheme = PinTheme(
+      width: 56,
+      height: 60,
+      textStyle: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: AppColors.logo2,
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.grey[200]!),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            blurRadius: 10,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+    );
+
+    final focusedPinTheme = defaultPinTheme.copyDecorationWith(
+      border: Border.all(color: AppColors.logo2, width: 2),
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -315,50 +309,18 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(
-                    6,
-                    (index) => Container(
-                      width: 50,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            blurRadius: 10,
-                            offset: Offset(0, 5),
-                          ),
-                        ],
-                      ),
-                      child: TextFormField(
-                        controller: _otpDigitControllers[index],
-                        focusNode: _focusNodes[index],
-                        decoration: InputDecoration(
-                          counterText: '',
-                          filled: true,
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                            borderSide: BorderSide(color: Colors.grey[200]!),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(16),
-                            borderSide: BorderSide(color: AppColors.logo2, width: 2),
-                          ),
-                        ),
-                        onChanged: (value) => _onOtpDigitChanged(value, index),
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.logo2,
-                        ),
-                        keyboardType: TextInputType.number,
-                        textAlign: TextAlign.center,
-                        maxLength: 1,
-                      ),
-                    ),
-                  ),
+                Pinput(
+                  length: 6,
+                  controller: _otpController,
+                  defaultPinTheme: defaultPinTheme,
+                  focusedPinTheme: focusedPinTheme,
+                  submittedPinTheme: defaultPinTheme,
+                  pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
+                  showCursor: true,
+                  onCompleted: (pin) {
+                    // Optional: You can trigger verification automatically when all digits are entered
+                    // _verifyOTP();
+                  },
                 ),
                 const SizedBox(height: 40),
                 Container(

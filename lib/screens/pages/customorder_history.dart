@@ -177,40 +177,64 @@ class _CustomOrderHistoryState extends State<CustomOrderHistory> {
                       children: [
                         // Gold Purity
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Gold Purity', style: normalText),
-                            Text('${item.caret} Carat', style: normalText),
+                            SizedBox(
+                              width: 100,
+                              child: Text('Gold Purity', style: normalText),
+                            ),
+                            Expanded(
+                              child: Text('${item.caret} Carat', 
+                                style: normalText,
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 4),
 
                         // Bangle Size
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Bangle Size', style: normalText),
-                            Text(item.bangleSize!, style: normalText),
+                            SizedBox(
+                              width: 100,
+                              child: Text('Bangle Size', style: normalText),
+                            ),
+                            Expanded(
+                              child: Text(item.bangleSize!, 
+                                style: normalText,
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 4),
 
                         // Weight
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Weight', style: normalText),
-                            Text('${item.gram}g', style: normalText),
+                            SizedBox(
+                              width: 100,
+                              child: Text('Weight', style: normalText),
+                            ),
+                            Expanded(
+                              child: Text('${item.gram}g', 
+                                style: normalText,
+                              ),
+                            ),
                           ],
                         ),
                         const SizedBox(height: 4),
 
                         // Status
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Status', style: normalText),
-                            Text(item.status!, style: normalColorText),
+                            SizedBox(
+                              width: 100,
+                              child: Text('Status', style: normalText),
+                            ),
+                            Expanded(
+                              child: Text(item.status!, 
+                                style: normalColorText,
+                              ),
+                            ),
                           ],
                         ),
                       ],

@@ -59,6 +59,7 @@ dependencies:
   timeline_tile: ^2.0.0
   photo_view: ^0.14.0
   flutter_cache_manager: ^3.3.1
+  pinput: ^3.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

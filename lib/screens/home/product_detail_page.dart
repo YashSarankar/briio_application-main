@@ -269,7 +269,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                     child: GestureDetector(
                                       onTap: () async {
                                         WhatsappUrl.launchWhatsapp(
-                                          number: "7021251102",
+                                          number: "7970099707",
                                           message:
                                               '${GlobalK.productName}\n${GlobalK.productId}\n${GlobalK.totalProduct}',
                                         );

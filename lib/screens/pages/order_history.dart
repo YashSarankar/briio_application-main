@@ -222,8 +222,7 @@ class OrdersCard extends StatelessWidget {
           isImage: false,
           color: Colors.white,
           child: Row(
-            mainAxisSize: MainAxisSize.min,
-            // Make sure the Row shrinks to fit its content
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RoundedContainer(
                 height: 150,
@@ -231,92 +230,67 @@ class OrdersCard extends StatelessWidget {
                 isImage: true,
                 networkImg: '$imgPath/products/${item.image}',
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                mainAxisSize: MainAxisSize.min,
-                // Column should take only necessary space
-                children: [
-                  Container(
-                    width: size.width * 0.3, // Provide a fixed width
-                    child: Text(
-                      item.productname!.toUpperCase(),
-                      style: TextStyle(
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.productname!.toUpperCase(),
+                        style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey.shade700),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        Text('Gold Purity'),
-                        // No need for Expanded or Flexible here
-                        Container(
-                          width: size.width * 0.25,
-                          // Give the second part some fixed width
-                          alignment: Alignment.centerRight,
-                          child: Text('${item.goldPurity ?? '22kt'}'),
+                          color: Colors.grey.shade700,
                         ),
-                      ],
-                    ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      const SizedBox(height: 8),
+                      _buildInfoRow('Gold Purity', item.goldPurity ?? '22kt'),
+                      _buildInfoRow('Bangle Size', item.bangleSize ?? '2 - 8'),
+                      _buildInfoRow('Weight', '${item.weight}g'),
+                      _buildInfoRow(
+                        'Status',
+                        item.activeStatus ?? '',
+                        valueColor: getStatusColor(item.activeStatus),
+                      ),
+                    ],
                   ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        Text('Bangle Size'),
-                        // No need for Expanded or Flexible here
-                        Container(
-                          width: size.width * 0.22,
-                          // Give the second part some fixed width
-                          alignment: Alignment.centerRight,
-                          child: Text('${item.bangleSize ?? '2 - 8'}'),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        Text('Weight'),
-                        // No need for Expanded or Flexible here
-                        Container(
-                          width: size.width * 0.31,
-                          // Give the second part some fixed width
-                          alignment: Alignment.centerRight,
-                          child: Text('${item.weight}g'),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Row(
-                      children: [
-                        Text('Status   '),
-                        Container(
-                          width: size.width * 0.32,
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            '${item.activeStatus}',
-                            style: TextStyle(
-                              color: getStatusColor(item.activeStatus),
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value, {Color? valueColor}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 100,  // Fixed width for labels like in custom order history
+            child: Text(
+              label,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: TextStyle(
+                fontSize: 14,
+                color: valueColor ?? Colors.black87,
+                fontWeight: valueColor != null ? FontWeight.w500 : FontWeight.normal,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -4,17 +4,11 @@ import 'package:briio_application/screens/auth/sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../controller/auth_controller.dart';
 import '../../utils/colors.dart';
-import '../../utils/const.dart';
-import '../../utils/globel_veriable.dart';
-import '../../widgets/auth_button.dart';
-import '../../widgets/buttom_bar.dart';
-import 'forgot_pass.dart';
+
 import 'otp_verification.dart';
 
 class SignIn extends StatefulWidget {
