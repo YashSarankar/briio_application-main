@@ -124,6 +124,11 @@ class CustomOrderTrackingScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    '${GlobalK.companyName}',
+                    style: GoogleFonts.lato(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 8),
       
                   Text(
                     '${GlobalK.address}\n'

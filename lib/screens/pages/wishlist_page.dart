@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:briio_application/screens/home/product_detail_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../../classes/wishlist.dart';
@@ -63,11 +64,31 @@ class _WishlistState extends State<WishlistPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.network(
-                            'https://thumbs.dreamstime.com/b/wishlist-icon-comic-style-like-document-cartoon-vector-illustration-white-isolated-background-favorite-list-splash-effect-218065056.jpg'),
-                        const Text(
-                          'Your Watchlist is Empty..',
-                          style: TextStyle(fontSize: 18),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            shape: BoxShape.circle,
+                          ),
+                          width: 120,
+                          height: 120,
+                          child: Center(
+                            child: Icon(
+                              Icons.favorite_border,
+                              size: 50,
+                              color: Colors.grey.shade400,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        Text(
+                          'Your wishlist is\nempty!',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.grey.shade800,
+                            height: 1.5,
+                            fontWeight: FontWeight.w400,
+                          ),
                         )
                       ],
                     ),

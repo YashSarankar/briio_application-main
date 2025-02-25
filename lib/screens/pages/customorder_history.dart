@@ -206,7 +206,6 @@ class _CustomOrderHistoryState extends State<CustomOrderHistory> {
                           ],
                         ),
                         const SizedBox(height: 4),
-
                         // Weight
                         Row(
                           children: [

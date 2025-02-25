@@ -1,12 +1,10 @@
 import 'package:briio_application/screens/auth/splash.dart';
-import 'package:briio_application/screens/auth/welcome.dart';
 import 'package:briio_application/utils/colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
-import 'controller/auth_controller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,7 +42,6 @@ class MyApp extends StatelessWidget {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           )),
-      // home: Hom(),
       home: const Splash(),
     );
   }

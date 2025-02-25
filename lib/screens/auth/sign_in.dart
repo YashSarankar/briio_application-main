@@ -109,24 +109,12 @@ class _SignInState extends State<SignIn> {
                     Center(
                       child: Image.asset(
                         'assets/blg.png',
-                        height: 60,
+                        height: 40,
                       ),
                     ),
                     
-                    const SizedBox(height: 40),
-                    
-                    // Phone Input Label
-                    Text(
-                      'Phone Number',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[800],
-                      ),
-                    ),
-                    
-                    const SizedBox(height: 8),
-                    
+                    const SizedBox(height: 40),      
+              
                     // Phone Input Field with smaller icon
                     TextFormField(
                       controller: _mobileController,

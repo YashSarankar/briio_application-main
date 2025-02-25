@@ -92,18 +92,19 @@ class _CartPageState extends State<CartPage> {
               child: Container(
                 color: Colors.white,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 350,
-                      width: double.infinity,
+                      width: 200,
+                      height: 200,
                       child: Image.asset(
-                        'assets/empty.jpg',
+                        'assets/empty_cart-removebg-preview.png',
                         fit: BoxFit.cover,
                       ),
                     ),
-                    const Text(
-                      'Your cart is empty',
-                      style: TextStyle(fontSize: 22),
+                    Text(
+                      'Your cart is empty !',
+                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400, color: Colors.grey.shade800),
                     )
                   ],
                 ),
