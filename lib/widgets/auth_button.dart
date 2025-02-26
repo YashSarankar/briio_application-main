@@ -10,7 +10,7 @@ class AuthButton {
       Color btnColor = AppColors.buttonBackGroundColor,
       Color textColor = AppColors.mainBlackColor}) {
     return MaterialButton(
-        color: Colors.black,
+        color: const Color(0xFF353434),
         padding: const EdgeInsets.symmetric(vertical: 10),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: onPressed,

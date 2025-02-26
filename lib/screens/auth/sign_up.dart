@@ -1058,6 +1058,7 @@ class _SignUpState extends State<SignUp> {
                     Row(
                       children: <Widget>[
                         Checkbox(
+                          activeColor: const Color(0xFF353434),
                           value: _isChecked,
                           onChanged: (bool? value) {
                             setState(() {
@@ -1158,7 +1159,6 @@ class _SignUpState extends State<SignUp> {
   void _showTermsAndConditions() {
     showDialog(
       context: context,
-      barrierColor: Colors.black54,
       builder: (BuildContext context) {
         return Dialog(
           backgroundColor: Colors.white,
@@ -1177,7 +1177,7 @@ class _SignUpState extends State<SignUp> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                   decoration: const BoxDecoration(
-                    color: Colors.black,
+                    color: Color(0xFF353434),
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12),
                       topRight: Radius.circular(12),
@@ -1253,7 +1253,7 @@ class _SignUpState extends State<SignUp> {
                             horizontal: 32,
                             vertical: 16,
                           ),
-                          backgroundColor: Colors.black,
+                          backgroundColor: const Color(0xFF353434),
                           foregroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),

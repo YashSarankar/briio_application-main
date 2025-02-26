@@ -112,10 +112,7 @@ class _SignInState extends State<SignIn> {
                         height: 40,
                       ),
                     ),
-                    
-                    const SizedBox(height: 40),      
-              
-                    // Phone Input Field with smaller icon
+                    const SizedBox(height: 40),
                     TextFormField(
                       controller: _mobileController,
                       keyboardType: TextInputType.phone,
@@ -175,7 +172,7 @@ class _SignInState extends State<SignIn> {
                       child: ElevatedButton(
                         onPressed: _isLoading ? null : _requestOTP,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.logo2,
+                          backgroundColor: const Color(0xFF353434),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -186,11 +183,11 @@ class _SignInState extends State<SignIn> {
                                 height: 24,
                                 width: 24,
                                 child: CircularProgressIndicator(
-                                  color: Colors.white,
+                                  color: const Color(0xFF353434),
                                   strokeWidth: 2.5,
                                 ),
                               )
-                            : const Text(
+                            : Text(
                                 'Continue',
                                 style: TextStyle(
                                   fontSize: 16,
@@ -227,7 +224,7 @@ class _SignInState extends State<SignIn> {
                             child: Text(
                               "Sign up",
                               style: TextStyle(
-                                color: AppColors.logo2,
+                                color: const Color(0xFF353434),
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15,
                               ),
