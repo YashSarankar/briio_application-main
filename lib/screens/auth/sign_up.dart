@@ -8,7 +8,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 
-import '../../utils/colors.dart';
 import '../../utils/const.dart';
 import '../../widgets/auth_button.dart';
 import '../pages/savedaddress.dart';

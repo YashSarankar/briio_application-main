@@ -270,8 +270,9 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                                       onTap: () async {
                                         WhatsappUrl.launchWhatsapp(
                                           number: "7970099707",
+                                          //inmessage send everything about product with image make it look like professional
                                           message:
-                                              '${GlobalK.productName}\n${GlobalK.productId}\n${GlobalK.totalProduct}',
+                                              '${snapshot.data!.product![index].images[0]}\nproduct name: ${GlobalK.productName}\nproduct id: ${GlobalK.productId}\ntotal product: ${GlobalK.totalProduct}\nproduct description: ${snapshot.data!.product![index].shortDesc}\ncategory: ${snapshot.data!.product![index].cname}\nproduct code: ${snapshot.data!.product![index].productCode}\ngross weight: ${snapshot.data!.product![index].gw}\nnet weight: ${snapshot.data!.product![index].nw}',
                                         );
                                       },
                                       child: Image.asset('assets/wapp.png',
