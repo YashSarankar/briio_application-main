@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 //  disableCapture()async{
 //   await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
 // }

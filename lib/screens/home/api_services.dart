@@ -34,7 +34,7 @@ class ApiServices {
           Uri.parse(
               'https://briio.in/api/Subcategorie?category_id=$categoryId'));
       http.StreamedResponse response = await request.send();
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         final data = jsonDecode(await response.stream.bytesToString());
         final list = List.from(data['data']);
         return list.map((e) => SubCategories.fromJson(e)).toList();
@@ -46,15 +46,15 @@ class ApiServices {
     }
   }
 
-  Future<List<Product>> getProducts(int subCategoryId) async {
+  Future<List<Product>> getProducts(int subCategoryId, int categoryId) async {
     try {
       var request = http.Request(
           'POST',
           Uri.parse(
-              'https://briio.in/api/ProductBySubCategorieId?id=$subCategoryId'));
+              'https://briio.in/api/ProductBySubCategorieId?id=$subCategoryId&category_id=$categoryId'));
       http.StreamedResponse response = await request.send();
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         final rawData = await response.stream.bytesToString();
         final jsonData = jsonDecode(rawData);
         final List jsonProducts = jsonData['product'] ?? [];

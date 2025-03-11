@@ -13,11 +13,11 @@ import 'filter_page.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen(
-      {super.key, required this.subcategoryId, required this.subcategoryName});
+      {super.key, required this.subcategoryId, required this.subcategoryName, required this.categoryId});
 
   final int subcategoryId;
   final String subcategoryName;
-
+  final int categoryId;
   @override
   State<ProductScreen> createState() => _ProductScreenState();
 }
@@ -34,8 +34,10 @@ class _ProductScreenState extends State<ProductScreen> {
 
   _getProducts() async {
     isReady = true;
-    final result = await ApiServices().getProducts(widget.subcategoryId);
+    final result = await ApiServices().getProducts(widget.subcategoryId, widget.categoryId);
     print(result.length);
+    print(widget.categoryId);
+    print(widget.subcategoryId);
     setState(() {
       products = result;
       allProducts = result;

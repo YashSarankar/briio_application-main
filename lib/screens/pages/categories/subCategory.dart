@@ -111,6 +111,7 @@ class _SubCategoryState extends State<SubCategory> {
                         });
                         Get.to(
                           () => ProductScreen(
+                            categoryId: widget.categoryId,
                             subcategoryId: subCategory[index].id!,
                             subcategoryName: subCategory[index].subcategory!,
                           ),
