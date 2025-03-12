@@ -232,29 +232,34 @@ class _ProductScreenState extends State<ProductScreen> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       _buildImageWithShimmer("${imgPath}products/${products[index].image}"),
-                                      Column(
-                                        children: [
-                                       Text(products[index]
-                                                .name
-                                                .toString(),
-                                                style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                                ),
-                                          SizedBox(
-                                            height: 3,
-                                          ),
-                                         Text(
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              products[index].name.toString(),
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            SizedBox(height: 3),
+                                            Text(
                                               "Gross wt: ${products[index].gw!.toString()}",
                                               style: const TextStyle(
                                                 color: Colors.black,
                                               ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
                                             ),
-                                          SizedBox(
-                                            height: 5,
-                                          ),
-                                        ],
+                                            SizedBox(height: 5),
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
