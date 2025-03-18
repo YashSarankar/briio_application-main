@@ -98,9 +98,9 @@ class OrderTrackingScreen extends StatelessWidget {
                 ],
               ),
             ),
-
+    
             const SizedBox(height: 24),
-
+    
             // Additional Instructions Section
             _buildSectionTitle('Additional Instructions'),
             _buildDetailCard(
@@ -109,9 +109,9 @@ class OrderTrackingScreen extends StatelessWidget {
                 style: GoogleFonts.lato(fontSize: 14),
               ),
             ),
-
+    
             const SizedBox(height: 24),
-
+    
             // Delivery Address Section
             _buildSectionTitle('Delivery Address'),
             _buildDetailCard(
@@ -137,9 +137,9 @@ class OrderTrackingScreen extends StatelessWidget {
                 ],
               ),
             ),
-
+    
             const SizedBox(height: 24),
-
+    
             // Order Timeline Section
             _buildSectionTitle('Track Delivery'),
             _buildTimeline(orderDetail),
@@ -180,10 +180,9 @@ class OrderTrackingScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Fixed width container for labels
-          SizedBox(
-            width: 100, // Adjust this width based on your longest label
+          Flexible(
             child: Text(
               label,
               style: GoogleFonts.lato(
@@ -192,14 +191,16 @@ class OrderTrackingScreen extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 8), // Add some spacing between label and value
-          // Expanded widget for values to take remaining space
-          Expanded(
-            child: Text(
-              value,
-              style: GoogleFonts.lato(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
+          const SizedBox(width: 8),
+          Flexible(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Text(
+                value,
+                style: GoogleFonts.lato(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ),
@@ -266,22 +267,29 @@ class OrderTrackingScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    stages[index]['title'],
-                    style: GoogleFonts.lato(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: stages[index]['status'] != null
-                          ? Colors.black
-                          : Colors.grey.shade600,
+                  Flexible(
+                    child: Text(
+                      stages[index]['title'],
+                      style: GoogleFonts.lato(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: stages[index]['status'] != null
+                            ? Colors.black
+                            : Colors.grey.shade600,
+                      ),
                     ),
                   ),
                   if (stages[index]['date'] != null)
-                    Text(
-                      stages[index]['date'],
-                      style: GoogleFonts.lato(
-                        fontSize: 14,
-                        color: Colors.grey.shade600,
+                    Flexible(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Text(
+                          stages[index]['date'],
+                          style: GoogleFonts.lato(
+                            fontSize: 14,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
                       ),
                     ),
                 ],
