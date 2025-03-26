@@ -74,12 +74,33 @@ class _PersonProfileState extends State<PersonProfile> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              '${GlobalK.companyName}',
-                              style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '${GlobalK.companyName}',
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+                                IconButton(
+                                  icon: Image.asset(
+                                    'assets/edit_icon.png',
+                                    width: 20,
+                                    height: 20,
+                                    color: Colors.grey.shade700,
+                                  ),
+                                  onPressed: () async {
+                                    final result = await Get.to(() => const UpdateProfileScreen());
+                                    if (result == true) {
+                                      // Force rebuild of PersonProfile
+                                      setState(() {});
+                                    }
+                                  },
+                                ),
+                              ],
                             ),
                             Text(
                               '${GlobalK.userFName}',
@@ -87,36 +108,22 @@ class _PersonProfileState extends State<PersonProfile> {
                                   fontSize: 16, color: Colors.black),
                             ),
                             Text(
-                                '${GlobalK.address},${GlobalK.city},${GlobalK.state}'),
-                            Text(
-                              '+${GlobalK.phone}',
+                              '${GlobalK.address},${GlobalK.city},${GlobalK.state}',
                               style: const TextStyle(
-                                  fontSize: 16, color: Colors.black),
+                                  fontSize: 12, color: Colors.black),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            Text(
+                              '+91${GlobalK.phone}',
+                              style: const TextStyle(
+                                  fontSize: 12, color: Colors.black),
                             ),
                           ],
                         ),
                       ),
                       const SizedBox(width: 15),
                     ],
-                  ),
-                  Positioned(
-                    top: 10,
-                    right: 10,
-                    child: IconButton(
-                      icon: Image.asset(
-                        'assets/edit_icon.png',
-                        width: 20,
-                        height: 20,
-                        color: Colors.grey.shade700,
-                      ),
-                      onPressed: () async {
-                        final result = await Get.to(() => const UpdateProfileScreen());
-                        if (result == true) {
-                          // Force rebuild of PersonProfile
-                          setState(() {});
-                        }
-                      },
-                    ),
                   ),
                 ],
               ),

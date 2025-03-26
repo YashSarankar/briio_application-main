@@ -182,26 +182,27 @@ class OrderTrackingScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Flexible(
+          Expanded(
+            flex: 2,
             child: Text(
               label,
               style: GoogleFonts.lato(
                 fontSize: 14,
                 color: Colors.grey.shade600,
               ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
-          const SizedBox(width: 8),
-          Flexible(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Text(
-                value,
-                style: GoogleFonts.lato(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
-                ),
+          // const SizedBox(width: 20),
+          Expanded(
+            flex: 1,
+            child: Text(
+              value,
+              style: GoogleFonts.lato(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
               ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],

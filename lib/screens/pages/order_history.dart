@@ -35,60 +35,57 @@ class _OrderHistoryPageState extends State<OrderHistoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        surfaceTintColor: Colors.white,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_new,
+              size: 16,
+              color: Colors.grey.shade700,
+            )),
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          surfaceTintColor: Colors.white,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios_new,
-                size: 16,
-                color: Colors.grey.shade700,
-              )),
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          elevation: 1,
-          foregroundColor: Colors.black,
-          title: Text(
-            'ORDER HISTORY',
-            style: TextStyle(
-                color: Colors.grey.shade700,
-                fontWeight: FontWeight.bold,
-                fontSize: 16),
-          ),
+        centerTitle: true,
+        elevation: 1,
+        foregroundColor: Colors.black,
+        title: Text(
+          'ORDER HISTORY',
+          style: TextStyle(
+              color: Colors.grey.shade700,
+              fontWeight: FontWeight.bold,
+              fontSize: 16),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: FutureBuilder<ShowOrderModel>(
-            future: getOrderHistory(),
-            builder: (context, snapshot) => snapshot.hasData
-                ? snapshot.data!.orders!.isEmpty
-                    ? Center(
-                        child: Text(
-                          'You have not ordered any product yet',
-                          style: GoogleFonts.lato(
-                            textStyle: const TextStyle(fontSize: 16),
-                          ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FutureBuilder<ShowOrderModel>(
+          future: getOrderHistory(),
+          builder: (context, snapshot) => snapshot.hasData
+              ? snapshot.data!.orders!.isEmpty
+                  ? Center(
+                      child: Text(
+                        'You have not ordered any product yet',
+                        style: GoogleFonts.lato(
+                          textStyle: const TextStyle(fontSize: 16),
                         ),
-                      )
-                    : ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.orders!.length,
-                        itemBuilder: (context, index) => OrdersCard(
-                          snapshot: snapshot,
-                          index: index,
-                        ),
-                      )
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-          ),
+                      ),
+                    )
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.orders!.length,
+                      itemBuilder: (context, index) => OrdersCard(
+                        snapshot: snapshot,
+                        index: index,
+                      ),
+                    )
+              : const Center(
+                  child: CircularProgressIndicator(),
+                ),
         ),
       ),
     );
